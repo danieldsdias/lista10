@@ -32,7 +32,7 @@ dependencies:
   intl: ^0.15.8
   floor: ^1.2.0
   floor_generator: ^1.2.0
-  build_runner: ^2.1.11
+  build_runner: ^2.1.10
   faker: ^2.0.0
 
 

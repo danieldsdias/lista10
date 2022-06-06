@@ -1,7 +1,11 @@
+import 'package:floor/floor.dart';
+
+@entity
 class Item {
-  final String id;
-  final String title;
-  final String itemListId;
+  @PrimaryKey(autoGenerate: true)
+  final int? id;
+  final String? title;
+  final String? itemListId;
 
   const Item({this.id, this.title, this.itemListId});
 }

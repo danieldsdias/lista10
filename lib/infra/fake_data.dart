@@ -56,57 +56,57 @@ const DUMMY_LISTS = const [
 
 const DUMMY_ITEMS = const [
   Item(
-    id: 'i1',
+    id: 1,
     title: 'Carne',
     itemListId: 'il1',
   ),
   Item(
-    id: 'i2',
+    id: 2,
     title: 'Arroz',
     itemListId: 'il1',
   ),
   Item(
-    id: 'i3',
+    id: 3,
     title: 'Feijão',
     itemListId: 'il1',
   ),
   Item(
-    id: 'i4',
+    id: 4,
     title: 'Coca',
     itemListId: 'il1',
   ),
   Item(
-    id: 'i5',
+    id: 5,
     title: 'Frango',
     itemListId: 'il1',
   ),
   Item(
-    id: 'i6',
+    id: 6,
     title: 'Linguiça',
     itemListId: 'il1',
   ),
   Item(
-    id: 'i7',
+    id: 7,
     title: 'Azeite',
     itemListId: 'il1',
   ),
   Item(
-    id: 'i8',
+    id: 8,
     title: 'Sabonete',
     itemListId: 'il1',
   ),
   Item(
-    id: 'i9',
+    id: 9,
     title: 'Cebola',
     itemListId: 'il2',
   ),
   Item(
-    id: 'i10',
+    id: 10,
     title: 'Maçã',
     itemListId: 'il2',
   ),
   Item(
-    id: 'i11',
+    id: 11,
     title: 'Fita de led',
     itemListId: 'il4',
   ),

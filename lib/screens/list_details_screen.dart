@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lista10/main.dart';
 
 import '../infra/fake_data.dart';
 
@@ -39,7 +40,7 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(6),
                     child: FittedBox(
-                      child: Text(itemList[index].id as String),
+                      child: Text(itemList[index].id.toString()),
                     ),
                   ),
                 ),
