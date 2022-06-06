@@ -4,7 +4,7 @@ import '../infra/fake_data.dart';
 import 'list_details_screen.dart';
 
 class CategoryListsScreen extends StatefulWidget {
-  CategoryListsScreen({Key key}) : super(key: key);
+  CategoryListsScreen({Key? key}) : super(key: key);
 
   static const routeName = '/category-lists';
 
@@ -19,9 +19,9 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
   @override
   Widget build(BuildContext context) {
     final routeArgs =
-        ModalRoute.of(context).settings.arguments as Map<String, String>;
+        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
     final listCategoryId = routeArgs['id'];
-    final categoryTitle = routeArgs['title'];
+    final String categoryTitle = routeArgs['title'] as String;
     final categoryLists = DUMMY_LISTS
         .where((itemList) => itemList.listCategoryId == listCategoryId)
         .toList();

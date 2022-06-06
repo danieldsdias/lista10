@@ -14,8 +14,8 @@ class ListCategory {
   final CategoryType type;
 
   const ListCategory({
-    @required this.id,
-    @required this.title,
+    required this.id,
+    required this.title,
     this.type = CategoryType.personal,
     this.color = Colors.orange,
   });

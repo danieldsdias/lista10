@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../infra/fake_data.dart';
 
 class ListDetailsScreen extends StatefulWidget {
-  ListDetailsScreen({Key key}) : super(key: key);
+  ListDetailsScreen({Key? key}) : super(key: key);
 
   static const routeName = '/list-details';
 
@@ -15,9 +15,9 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final routeArgs =
-        ModalRoute.of(context).settings.arguments as Map<String, String>;
+        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
     final itemListId = routeArgs['itemListId'];
-    final listTitle = routeArgs['title'];
+    final listTitle = routeArgs['title'] as String;
     final itemList =
         DUMMY_ITEMS.where((item) => item.itemListId == itemListId).toList();
 
@@ -39,11 +39,11 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(6),
                     child: FittedBox(
-                      child: Text(itemList[index].id),
+                      child: Text(itemList[index].id as String),
                     ),
                   ),
                 ),
-                title: Text(itemList[index].title),
+                title: Text(itemList[index].title as String),
                 trailing: MediaQuery.of(context).size.width > 360
                     ? TextButton.icon(
                         icon: Icon(Icons.delete),

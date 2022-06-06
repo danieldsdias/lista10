@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  const MealDetailScreen({Key key}) : super(key: key);
+  const MealDetailScreen({Key? key}) : super(key: key);
   static const routeName = '/meal-detail';
 
   Widget buildSectionTitle(BuildContext context, String text) {
@@ -33,7 +33,7 @@ class MealDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mealId = ModalRoute.of(context).settings.arguments as String;
+    final mealId = ModalRoute.of(context)?.settings.arguments as String;
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
 
     return Scaffold(
