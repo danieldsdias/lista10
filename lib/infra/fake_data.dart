@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lista10/models/item.dart';
 
+import '../models/item.dart';
 import '../models/list_category.dart';
 import '../models/item_list.dart';
 

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'infra/lista10_database.dart';
 
+import 'infra/lista10_database.dart';
+import 'controllers/db_controller.dart';
 import 'screens/category_lists_screen.dart';
 import 'screens/meal_detail_screen.dart';
 import 'screens/categories_screen.dart';
 import 'screens/list_details_screen.dart';
 
-late AppDatabase database;
+late AppDatabase? database = null;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  database =
-      await $FloorAppDatabase.databaseBuilder('lista10_database.db').build();
+  database = await DBController.openDatabase();
+
   runApp(MyApp());
 }
 
