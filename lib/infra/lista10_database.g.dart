@@ -276,6 +276,12 @@ class _$ItemListDao extends ItemListDao {
   }
 
   @override
+  Future<void> deleteById(String id) async {
+    await _queryAdapter
+        .queryNoReturn('Delete FROM ItemList WHERE id = ?1', arguments: [id]);
+  }
+
+  @override
   Future<void> insertData(ItemList data) async {
     await _itemListInsertionAdapter.insert(data, OnConflictStrategy.abort);
   }

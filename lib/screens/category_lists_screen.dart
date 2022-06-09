@@ -4,6 +4,7 @@ import '../infra/fake_data.dart';
 import 'list_details_screen.dart';
 import '../models/item_list.dart';
 import '../controllers/db_controller.dart';
+import '../widgets/new_item.dart';
 
 class CategoryListsScreen extends StatefulWidget {
   CategoryListsScreen({Key? key}) : super(key: key);
@@ -17,12 +18,34 @@ class CategoryListsScreen extends StatefulWidget {
 class _CategoryListsScreenState extends State<CategoryListsScreen> {
   final itemLists = DUMMY_LISTS;
   final double _borderRadius = 15;
+  late String listCategoryId;
+
+  void _addNewItem(String title) {
+    final newItem = ItemList(title: title, listCategoryId: listCategoryId);
+
+    setState(() {
+      DBController.getDB()!.itemListDao.insertData(newItem);
+    });
+  }
+
+  void _startAddNewItem(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return GestureDetector(
+          onTap: () => {},
+          behavior: HitTestBehavior.opaque,
+          child: NewItem(_addNewItem),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final routeArgs =
         ModalRoute.of(context)?.settings.arguments as Map<String, String>;
-    final String listCategoryId = routeArgs['id'] as String;
+    listCategoryId = routeArgs['id'] as String;
     final String categoryTitle = routeArgs['title'] as String;
 
     return StreamBuilder<Object>(
@@ -65,19 +88,17 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
                             ),
                           ),
                           title: Text(categoryLists[index].title!),
-                          trailing: MediaQuery.of(context).size.width > 360
-                              ? TextButton.icon(
-                                  icon: Icon(Icons.delete),
-                                  label: Text('Delete'),
-                                  style: TextButton.styleFrom(
-                                      primary: Theme.of(context).errorColor),
-                                  onPressed: () {},
-                                )
-                              : IconButton(
-                                  icon: Icon(Icons.delete),
-                                  color: Theme.of(context).errorColor,
-                                  onPressed: () {},
-                                ),
+                          trailing: IconButton(
+                            icon: Icon(Icons.delete),
+                            color: Theme.of(context).errorColor,
+                            onPressed: () async {
+                              await DBController.getDB()!
+                                  .itemListDao
+                                  .deleteById(
+                                      categoryLists[index].id.toString());
+                              setState(() {});
+                            },
+                          ),
                         )
                         //Text(categoryLists[index].title),
                         ),
@@ -89,7 +110,7 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
                   FloatingActionButtonLocation.centerFloat,
               floatingActionButton: FloatingActionButton(
                 child: Icon(Icons.add),
-                onPressed: () {},
+                onPressed: () => _startAddNewItem(context),
               ),
             );
           } else {
