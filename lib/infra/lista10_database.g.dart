@@ -257,7 +257,7 @@ class _$ItemListDao extends ItemListDao {
   }
 
   @override
-  Stream<List<ItemList>> getItemListByItemListId(String listCategoryId) {
+  Stream<List<ItemList>> getItemListByListCategoryId(String listCategoryId) {
     return _queryAdapter.queryListStream(
         'SELECT * FROM ItemList WHERE listCategoryId = ?1',
         mapper: (Map<String, Object?> row) => ItemList(

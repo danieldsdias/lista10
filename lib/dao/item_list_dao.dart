@@ -21,5 +21,5 @@ abstract class ItemListDao {
   Stream<List<ItemList>> getAllItemLists();
 
   @Query('SELECT * FROM ItemList WHERE listCategoryId = :listCategoryId')
-  Stream<List<ItemList>> getItemListByItemListId(String listCategoryId);
+  Stream<List<ItemList>> getItemListByListCategoryId(String listCategoryId);
 }

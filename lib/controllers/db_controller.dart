@@ -1,6 +1,5 @@
 import 'package:floor/floor.dart';
 import 'package:lista10/infra/lista10_database.dart';
-import 'package:lista10/main.dart';
 import '../infra/fake_data.dart';
 
 class DBController {
@@ -24,6 +23,10 @@ class DBController {
           .build();
 
       if (needInit) {
+        for (var item in DUMMY_LISTS) {
+          await mainBase!.itemListDao.insertData(item);
+        }
+
         for (var item in DUMMY_ITEMS) {
           await mainBase!.itemDao.insertItem(item);
         }

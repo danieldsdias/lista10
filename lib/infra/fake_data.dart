@@ -6,25 +6,25 @@ import '../models/item_list.dart';
 
 const DUMMY_CATEGORIES = const [
   ListCategory(
-    id: 'c1',
+    id: '1',
     title: 'Mercado',
     color: Colors.purple,
     type: CategoryType.market,
   ),
   ListCategory(
-    id: 'c2',
+    id: '2',
     title: 'Casa',
     color: Colors.red,
     type: CategoryType.house,
   ),
   ListCategory(
-    id: 'c3',
+    id: '3',
     title: 'Pessoal',
     color: Colors.blue,
     type: CategoryType.personal,
   ),
   ListCategory(
-    id: 'c4',
+    id: '4',
     title: 'Trabalho',
     color: Colors.green,
     type: CategoryType.work,
@@ -35,22 +35,22 @@ const DUMMY_LISTS = const [
   ItemList(
     id: 1,
     title: 'Compra do mês',
-    listCategoryId: 'c1',
+    listCategoryId: '1',
   ),
   ItemList(
     id: 2,
     title: 'Hortifruti',
-    listCategoryId: 'c1',
+    listCategoryId: '1',
   ),
   ItemList(
     id: 3,
     title: 'Reforma do quarto',
-    listCategoryId: 'c2',
+    listCategoryId: '2',
   ),
   ItemList(
     id: 4,
     title: 'Muambinhas',
-    listCategoryId: 'c3',
+    listCategoryId: '3',
   ),
 ];
 
