@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:confirm_dialog/confirm_dialog.dart';
 
 import '../infra/fake_data.dart';
 import 'list_details_screen.dart';
@@ -89,16 +90,24 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
                           ),
                           title: Text(categoryLists[index].title!),
                           trailing: IconButton(
-                            icon: Icon(Icons.delete),
-                            color: Theme.of(context).errorColor,
-                            onPressed: () async {
-                              await DBController.getDB()!
-                                  .itemListDao
-                                  .deleteById(
-                                      categoryLists[index].id.toString());
-                              setState(() {});
-                            },
-                          ),
+                              icon: Icon(Icons.delete),
+                              color: Theme.of(context).errorColor,
+                              onPressed: () async {
+                                if (await confirm(
+                                  context,
+                                  title: const Text('Confirmação'),
+                                  content:
+                                      const Text('Deseja excluir a lista?'),
+                                  textOK: const Text('Sim'),
+                                  textCancel: const Text('Não'),
+                                )) {
+                                  await DBController.getDB()!
+                                      .itemListDao
+                                      .deleteById(
+                                          categoryLists[index].id.toString());
+                                  setState(() {});
+                                }
+                              }),
                         )
                         //Text(categoryLists[index].title),
                         ),
