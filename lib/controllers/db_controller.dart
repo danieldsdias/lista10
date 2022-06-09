@@ -1,5 +1,6 @@
 import 'package:floor/floor.dart';
 import 'package:lista10/infra/lista10_database.dart';
+import 'package:lista10/main.dart';
 import '../infra/fake_data.dart';
 
 class DBController {
@@ -31,5 +32,9 @@ class DBController {
 
       return mainBase;
     }
+  }
+
+  static AppDatabase? getDB() {
+    return mainBase;
   }
 }

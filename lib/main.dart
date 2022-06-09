@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'infra/lista10_database.dart';
-import 'controllers/db_controller.dart';
 import 'screens/category_lists_screen.dart';
-import 'screens/meal_detail_screen.dart';
 import 'screens/categories_screen.dart';
 import 'screens/list_details_screen.dart';
+import 'controllers/db_controller.dart';
 
 late AppDatabase? database = null;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  database = await DBController.openDatabase();
+  await DBController.openDatabase();
 
   runApp(MyApp());
 }
@@ -30,7 +28,6 @@ class MyApp extends StatelessWidget {
       initialRoute: CategoriesScreen.routeName,
       routes: {
         CategoriesScreen.routeName: (ctx) => CategoriesScreen(),
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
         CategoryListsScreen.routeName: (ctx) => CategoryListsScreen(),
         ListDetailsScreen.routeName: (ctx) => ListDetailsScreen(),
       },

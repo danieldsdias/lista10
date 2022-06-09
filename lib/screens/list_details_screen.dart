@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../models/item.dart';
-import '../main.dart';
+import '../controllers/db_controller.dart';
 
 class ListDetailsScreen extends StatefulWidget {
   ListDetailsScreen({Key? key}) : super(key: key);
@@ -20,7 +21,8 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
     final listTitle = routeArgs['title'] as String;
 
     return StreamBuilder<List<Item>>(
-        stream: database!.itemDao.getItemListByItemListId(itemListId!),
+        stream:
+            DBController.getDB()!.itemDao.getItemListByItemListId(itemListId!),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(child: (Text('${snapshot.error}')));
