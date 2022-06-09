@@ -35,7 +35,7 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
           return InkWell(
             onTap: () => Navigator.of(context)
                 .pushNamed(ListDetailsScreen.routeName, arguments: {
-              'itemListId': categoryLists[index].id,
+              'itemListId': categoryLists[index].id.toString(),
               'title': categoryLists[index].title,
             }),
             splashColor: Theme.of(context).primaryColor,
@@ -52,11 +52,11 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(6),
                       child: FittedBox(
-                        child: Text(categoryLists[index].id),
+                        child: Text(categoryLists[index].id.toString()),
                       ),
                     ),
                   ),
-                  title: Text(categoryLists[index].title),
+                  title: Text(categoryLists[index].title!),
                   trailing: MediaQuery.of(context).size.width > 360
                       ? TextButton.icon(
                           icon: Icon(Icons.delete),

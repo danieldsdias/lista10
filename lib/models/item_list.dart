@@ -1,8 +1,11 @@
-class ItemList {
-  final String id;
-  final String title;
-  final String listCategoryId;
+import 'package:floor/floor.dart';
 
-  const ItemList(
-      {required this.id, required this.title, required this.listCategoryId});
+@entity
+class ItemList {
+  @PrimaryKey(autoGenerate: true)
+  final int? id;
+  final String? title;
+  final String? listCategoryId;
+
+  const ItemList({this.id, this.title, this.listCategoryId});
 }

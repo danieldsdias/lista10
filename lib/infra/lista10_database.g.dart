@@ -63,6 +63,8 @@ class _$AppDatabase extends AppDatabase {
 
   ItemDao? _itemDaoInstance;
 
+  ItemListDao? _itemListDaoInstance;
+
   Future<sqflite.Database> open(String path, List<Migration> migrations,
       [Callback? callback]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
@@ -83,6 +85,8 @@ class _$AppDatabase extends AppDatabase {
       onCreate: (database, version) async {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Item` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `itemListId` TEXT)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `ItemList` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `listCategoryId` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -93,6 +97,11 @@ class _$AppDatabase extends AppDatabase {
   @override
   ItemDao get itemDao {
     return _itemDaoInstance ??= _$ItemDao(database, changeListener);
+  }
+
+  @override
+  ItemListDao get itemListDao {
+    return _itemListDaoInstance ??= _$ItemListDao(database, changeListener);
   }
 }
 
@@ -171,18 +180,6 @@ class _$ItemDao extends ItemDao {
   }
 
   @override
-  Stream<Item?> getItemById(String id) {
-    return _queryAdapter.queryStream('SELECT 1 FROM Item WHERE id = ?1',
-        mapper: (Map<String, Object?> row) => Item(
-            id: row['id'] as int?,
-            title: row['title'] as String?,
-            itemListId: row['itemListId'] as String?),
-        arguments: [id],
-        queryableName: 'Item',
-        isView: false);
-  }
-
-  @override
   Future<void> insertItem(Item item) async {
     await _itemInsertionAdapter.insert(item, OnConflictStrategy.abort);
   }
@@ -195,5 +192,95 @@ class _$ItemDao extends ItemDao {
   @override
   Future<void> deleteItem(Item item) async {
     await _itemDeletionAdapter.delete(item);
+  }
+}
+
+class _$ItemListDao extends ItemListDao {
+  _$ItemListDao(this.database, this.changeListener)
+      : _queryAdapter = QueryAdapter(database, changeListener),
+        _itemListInsertionAdapter = InsertionAdapter(
+            database,
+            'ItemList',
+            (ItemList item) => <String, Object?>{
+                  'id': item.id,
+                  'title': item.title,
+                  'listCategoryId': item.listCategoryId
+                },
+            changeListener),
+        _itemListUpdateAdapter = UpdateAdapter(
+            database,
+            'ItemList',
+            ['id'],
+            (ItemList item) => <String, Object?>{
+                  'id': item.id,
+                  'title': item.title,
+                  'listCategoryId': item.listCategoryId
+                },
+            changeListener),
+        _itemListDeletionAdapter = DeletionAdapter(
+            database,
+            'ItemList',
+            ['id'],
+            (ItemList item) => <String, Object?>{
+                  'id': item.id,
+                  'title': item.title,
+                  'listCategoryId': item.listCategoryId
+                },
+            changeListener);
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<ItemList> _itemListInsertionAdapter;
+
+  final UpdateAdapter<ItemList> _itemListUpdateAdapter;
+
+  final DeletionAdapter<ItemList> _itemListDeletionAdapter;
+
+  @override
+  Future<void> deleteAllItemLists() async {
+    await _queryAdapter.queryNoReturn('DELETE * FROM ItemList');
+  }
+
+  @override
+  Stream<List<ItemList>> getAllItemLists() {
+    return _queryAdapter.queryListStream('SELECT * FROM ItemList',
+        mapper: (Map<String, Object?> row) => ItemList(
+            id: row['id'] as int?,
+            title: row['title'] as String?,
+            listCategoryId: row['listCategoryId'] as String?),
+        queryableName: 'ItemList',
+        isView: false);
+  }
+
+  @override
+  Stream<List<ItemList>> getItemListByItemListId(String listCategoryId) {
+    return _queryAdapter.queryListStream(
+        'SELECT * FROM ItemList WHERE listCategoryId = ?1',
+        mapper: (Map<String, Object?> row) => ItemList(
+            id: row['id'] as int?,
+            title: row['title'] as String?,
+            listCategoryId: row['listCategoryId'] as String?),
+        arguments: [listCategoryId],
+        queryableName: 'ItemList',
+        isView: false);
+  }
+
+  @override
+  Future<void> insertData(ItemList data) async {
+    await _itemListInsertionAdapter.insert(data, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updateData(ItemList data) async {
+    await _itemListUpdateAdapter.update(data, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> deleteData(ItemList data) async {
+    await _itemListDeletionAdapter.delete(data);
   }
 }

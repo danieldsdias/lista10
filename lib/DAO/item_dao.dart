@@ -22,7 +22,4 @@ abstract class ItemDao {
 
   @Query('SELECT * FROM Item WHERE itemListId = :itemListId')
   Stream<List<Item>> getItemListByItemListId(String itemListId);
-
-  @Query('SELECT 1 FROM Item WHERE id = :id')
-  Stream<Item?> getItemById(String id);
 }

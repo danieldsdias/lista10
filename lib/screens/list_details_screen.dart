@@ -16,8 +16,8 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final routeArgs =
-        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
-    final itemListId = routeArgs['itemListId'];
+        ModalRoute.of(context)?.settings.arguments as Map<String, String?>;
+    final itemListId = routeArgs['itemListId'] as String;
     final listTitle = routeArgs['title'] as String;
 
     return StreamBuilder<List<Item>>(
