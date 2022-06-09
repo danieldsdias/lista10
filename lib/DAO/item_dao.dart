@@ -22,4 +22,7 @@ abstract class ItemDao {
 
   @Query('SELECT * FROM Item WHERE itemListId = :itemListId')
   Stream<List<Item>> getItemListByItemListId(String itemListId);
+
+  @Query('Delete FROM Item WHERE id = :id')
+  Future<void> deleteById(String id);
 }

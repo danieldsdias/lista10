@@ -74,19 +74,16 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
                           ),
                         ),
                         title: Text(itemList[index].title as String),
-                        trailing: MediaQuery.of(context).size.width > 360
-                            ? TextButton.icon(
-                                icon: Icon(Icons.delete),
-                                label: Text('Delete'),
-                                style: TextButton.styleFrom(
-                                    primary: Theme.of(context).errorColor),
-                                onPressed: () {},
-                              )
-                            : IconButton(
-                                icon: Icon(Icons.delete),
-                                color: Theme.of(context).errorColor,
-                                onPressed: () {},
-                              ),
+                        trailing: IconButton(
+                          icon: Icon(Icons.delete),
+                          color: Theme.of(context).errorColor,
+                          onPressed: () async {
+                            await DBController.getDB()!
+                                .itemDao
+                                .deleteById(itemList[index].id.toString());
+                            setState(() {});
+                          },
+                        ),
                       )
                       //Text(categoryLists[index].title),
                       );

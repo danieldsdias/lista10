@@ -180,6 +180,12 @@ class _$ItemDao extends ItemDao {
   }
 
   @override
+  Future<void> deleteById(String id) async {
+    await _queryAdapter
+        .queryNoReturn('Delete FROM Item WHERE id = ?1', arguments: [id]);
+  }
+
+  @override
   Future<void> insertItem(Item item) async {
     await _itemInsertionAdapter.insert(item, OnConflictStrategy.abort);
   }
