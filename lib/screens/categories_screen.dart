@@ -1,12 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:lista10/models/list_category.dart';
 
-import '../infra/fake_data.dart';
 import '../widgets/category_item.dart';
+import '../widgets/new_item.dart';
 import '../controllers/db_controller.dart';
 
-class CategoriesScreen extends StatelessWidget {
+class CategoriesScreen extends StatefulWidget {
   static const routeName = '/';
+
+  @override
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
+}
+
+class _CategoriesScreenState extends State<CategoriesScreen> {
+  void _addNewCategory(String title) {
+    final newCategory = ListCategory(
+      title: title,
+      type: CategoryType.personal.name,
+      color: Colors.orange.value,
+    );
+
+    setState(() {
+      DBController.getDB()!.listCategoryDao.insertData(newCategory);
+    });
+  }
+
+  void _startAddNewItem(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return GestureDetector(
+          onTap: () => {},
+          behavior: HitTestBehavior.opaque,
+          child: NewItem(_addNewCategory),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +73,7 @@ class CategoriesScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () => _startAddNewItem(context),
       ),
     );
   }
