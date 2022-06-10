@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:floor/floor.dart';
 
 enum CategoryType {
   market,
@@ -7,16 +7,18 @@ enum CategoryType {
   work,
 }
 
+@entity
 class ListCategory {
-  final String id;
-  final String title;
-  final Color color;
-  final CategoryType type;
+  @PrimaryKey(autoGenerate: true)
+  final int? id;
+  final String? title;
+  final int? color;
+  final String? type;
 
   const ListCategory({
-    required this.id,
-    required this.title,
-    this.type = CategoryType.personal,
-    this.color = Colors.orange,
+    this.id,
+    this.title,
+    this.type,
+    this.color,
   });
 }

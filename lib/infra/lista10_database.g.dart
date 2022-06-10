@@ -65,6 +65,8 @@ class _$AppDatabase extends AppDatabase {
 
   ItemListDao? _itemListDaoInstance;
 
+  ListCategoryDao? _listCategoryDaoInstance;
+
   Future<sqflite.Database> open(String path, List<Migration> migrations,
       [Callback? callback]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
@@ -87,6 +89,8 @@ class _$AppDatabase extends AppDatabase {
             'CREATE TABLE IF NOT EXISTS `Item` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `itemListId` TEXT)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `ItemList` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `listCategoryId` TEXT)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `ListCategory` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `title` TEXT, `color` INTEGER, `type` TEXT)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -102,6 +106,12 @@ class _$AppDatabase extends AppDatabase {
   @override
   ItemListDao get itemListDao {
     return _itemListDaoInstance ??= _$ItemListDao(database, changeListener);
+  }
+
+  @override
+  ListCategoryDao get listCategoryDao {
+    return _listCategoryDaoInstance ??=
+        _$ListCategoryDao(database, changeListener);
   }
 }
 
@@ -294,5 +304,92 @@ class _$ItemListDao extends ItemListDao {
   @override
   Future<void> deleteData(ItemList data) async {
     await _itemListDeletionAdapter.delete(data);
+  }
+}
+
+class _$ListCategoryDao extends ListCategoryDao {
+  _$ListCategoryDao(this.database, this.changeListener)
+      : _queryAdapter = QueryAdapter(database, changeListener),
+        _listCategoryInsertionAdapter = InsertionAdapter(
+            database,
+            'ListCategory',
+            (ListCategory item) => <String, Object?>{
+                  'id': item.id,
+                  'title': item.title,
+                  'color': item.color,
+                  'type': item.type
+                },
+            changeListener),
+        _listCategoryUpdateAdapter = UpdateAdapter(
+            database,
+            'ListCategory',
+            ['id'],
+            (ListCategory item) => <String, Object?>{
+                  'id': item.id,
+                  'title': item.title,
+                  'color': item.color,
+                  'type': item.type
+                },
+            changeListener),
+        _listCategoryDeletionAdapter = DeletionAdapter(
+            database,
+            'ListCategory',
+            ['id'],
+            (ListCategory item) => <String, Object?>{
+                  'id': item.id,
+                  'title': item.title,
+                  'color': item.color,
+                  'type': item.type
+                },
+            changeListener);
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<ListCategory> _listCategoryInsertionAdapter;
+
+  final UpdateAdapter<ListCategory> _listCategoryUpdateAdapter;
+
+  final DeletionAdapter<ListCategory> _listCategoryDeletionAdapter;
+
+  @override
+  Future<void> deleteAllCategories() async {
+    await _queryAdapter.queryNoReturn('DELETE * FROM ListCategory');
+  }
+
+  @override
+  Stream<List<ListCategory>> getAllCategories() {
+    return _queryAdapter.queryListStream('SELECT * FROM ListCategory',
+        mapper: (Map<String, Object?> row) => ListCategory(
+            id: row['id'] as int?,
+            title: row['title'] as String?,
+            type: row['type'] as String?,
+            color: row['color'] as int?),
+        queryableName: 'ListCategory',
+        isView: false);
+  }
+
+  @override
+  Future<void> deleteById(String id) async {
+    await _queryAdapter.queryNoReturn('Delete FROM ListCategory WHERE id = ?1',
+        arguments: [id]);
+  }
+
+  @override
+  Future<void> insertData(ListCategory data) async {
+    await _listCategoryInsertionAdapter.insert(data, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updateData(ListCategory data) async {
+    await _listCategoryUpdateAdapter.update(data, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> deleteData(ListCategory data) async {
+    await _listCategoryDeletionAdapter.delete(data);
   }
 }

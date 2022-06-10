@@ -30,6 +30,11 @@ class DBController {
         for (var item in DUMMY_ITEMS) {
           await mainBase!.itemDao.insertItem(item);
         }
+
+        for (var item in DUMMY_CATEGORIES) {
+          await mainBase!.listCategoryDao.insertData(item);
+        }
+
         needInit = false;
       }
 

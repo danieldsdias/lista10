@@ -4,30 +4,30 @@ import '../models/item.dart';
 import '../models/list_category.dart';
 import '../models/item_list.dart';
 
-const DUMMY_CATEGORIES = const [
+final DUMMY_CATEGORIES = [
   ListCategory(
-    id: '1',
+    id: 1,
     title: 'Mercado',
-    color: Colors.purple,
-    type: CategoryType.market,
+    color: Colors.purple.value,
+    type: CategoryType.market.name,
   ),
   ListCategory(
-    id: '2',
+    id: 2,
     title: 'Casa',
-    color: Colors.red,
-    type: CategoryType.house,
+    color: Colors.red.value,
+    type: CategoryType.house.name,
   ),
   ListCategory(
-    id: '3',
+    id: 3,
     title: 'Pessoal',
-    color: Colors.blue,
-    type: CategoryType.personal,
+    color: Colors.blue.value,
+    type: CategoryType.personal.name,
   ),
   ListCategory(
-    id: '4',
+    id: 4,
     title: 'Trabalho',
-    color: Colors.green,
-    type: CategoryType.work,
+    color: Colors.green.value,
+    type: CategoryType.work.name,
   ),
 ];
 
