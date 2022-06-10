@@ -14,6 +14,7 @@ class NewItem extends StatefulWidget {
 
 class _NewItemState extends State<NewItem> {
   final _titleController = TextEditingController();
+  FocusNode focusNode = FocusNode();
 
   void _submitData() {
     final enteredTitle = _titleController.text;
@@ -57,6 +58,8 @@ class _NewItemState extends State<NewItem> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               TextField(
+                focusNode: focusNode,
+                autofocus: true,
                 decoration: InputDecoration(labelText: 'Título'),
                 controller: _titleController,
                 onSubmitted: (_) => _submitData,
