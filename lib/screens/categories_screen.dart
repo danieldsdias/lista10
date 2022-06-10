@@ -13,11 +13,13 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  void _addNewCategory(String title) {
+  Color color = Colors.blue;
+
+  void _addNewCategory(String title, Color pickedColor) {
     final newCategory = ListCategory(
       title: title,
       type: CategoryType.personal.name,
-      color: Colors.orange.value,
+      color: pickedColor.value,
     );
 
     setState(() {
@@ -32,7 +34,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         return GestureDetector(
           onTap: () => {},
           behavior: HitTestBehavior.opaque,
-          child: NewItem(_addNewCategory),
+          child: NewItem(_addNewCategory, color),
         );
       },
     );
