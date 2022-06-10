@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lista10/models/screen_arguments.dart';
 import 'package:lista10/screens/category_lists_screen.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -10,10 +11,12 @@ class CategoryItem extends StatelessWidget {
   CategoryItem(this.id, this.title, this.color);
 
   void selectCategory(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(CategoryListsScreen.routeName, arguments: {
-      'id': id,
-      'title': title,
-    });
+    Navigator.of(ctx).pushNamed(CategoryListsScreen.routeName,
+        arguments: ScreenArguments(
+          id: id,
+          title: title,
+          color: color,
+        ));
   }
 
   @override

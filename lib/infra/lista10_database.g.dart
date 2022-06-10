@@ -374,7 +374,18 @@ class _$ListCategoryDao extends ListCategoryDao {
 
   @override
   Future<void> deleteById(String id) async {
-    await _queryAdapter.queryNoReturn('Delete FROM ListCategory WHERE id = ?1',
+    await _queryAdapter.queryNoReturn('DELETE FROM ListCategory WHERE id = ?1',
+        arguments: [id]);
+  }
+
+  @override
+  Future<ListCategory?> getById(String id) async {
+    return _queryAdapter.query('SELECT * FROM ListCategory WHERE id = ?1',
+        mapper: (Map<String, Object?> row) => ListCategory(
+            id: row['id'] as int?,
+            title: row['title'] as String?,
+            type: row['type'] as String?,
+            color: row['color'] as int?),
         arguments: [id]);
   }
 

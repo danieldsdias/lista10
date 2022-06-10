@@ -20,6 +20,9 @@ abstract class ListCategoryDao {
   @Query('SELECT * FROM ListCategory')
   Stream<List<ListCategory>> getAllCategories();
 
-  @Query('Delete FROM ListCategory WHERE id = :id')
+  @Query('DELETE FROM ListCategory WHERE id = :id')
   Future<void> deleteById(String id);
+
+  @Query('SELECT * FROM ListCategory WHERE id = :id')
+  Future<ListCategory?> getById(String id);
 }

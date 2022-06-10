@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
+import 'package:lista10/models/list_category.dart';
 
 import '../infra/fake_data.dart';
 import 'list_details_screen.dart';
 import '../models/item_list.dart';
+import '../models/screen_arguments.dart';
 import '../controllers/db_controller.dart';
 import '../widgets/new_item.dart';
 
@@ -44,15 +46,15 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final routeArgs =
-        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
-    listCategoryId = routeArgs['id'] as String;
-    final String categoryTitle = routeArgs['title'] as String;
+    final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    listCategoryId = args.id!;
+    final String categoryTitle = args.title!;
+    final color = args.color;
 
     return StreamBuilder<Object>(
         stream: DBController.getDB()!
             .itemListDao
-            .getItemListByListCategoryId(listCategoryId!),
+            .getItemListByListCategoryId(listCategoryId),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(child: (Text('${snapshot.error}')));
@@ -61,6 +63,7 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
             return Scaffold(
               appBar: AppBar(
                 title: Text(categoryTitle),
+                backgroundColor: color,
               ),
               body: ListView.builder(
                 itemBuilder: (context, index) {

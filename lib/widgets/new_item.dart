@@ -116,9 +116,7 @@ class _NewItemState extends State<NewItem> {
                 autofocus: true,
                 decoration: const InputDecoration(labelText: 'Título'),
                 controller: _titleController,
-                onSubmitted: (_) {
-                  _submitData();
-                },
+                onSubmitted: (_) => _submitData(),
                 textInputAction: TextInputAction.send,
               ),
               const SizedBox(height: 16.0),
