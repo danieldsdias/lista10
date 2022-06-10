@@ -62,7 +62,10 @@ class _NewItemState extends State<NewItem> {
                 autofocus: true,
                 decoration: InputDecoration(labelText: 'Título'),
                 controller: _titleController,
-                onSubmitted: (_) => _submitData,
+                onSubmitted: (_) {
+                  _submitData();
+                },
+                textInputAction: TextInputAction.send,
               ),
               ElevatedButton(
                 onPressed: _submitData,
