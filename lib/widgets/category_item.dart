@@ -13,7 +13,7 @@ class CategoryItem extends StatelessWidget {
   void selectCategory(BuildContext ctx) {
     Navigator.of(ctx).pushNamed(CategoryListsScreen.routeName,
         arguments: ScreenArguments(
-          id: id,
+          listCategoryId: id,
           title: title,
           color: color,
         ));

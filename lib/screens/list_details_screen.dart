@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../models/screen_arguments.dart';
 import '../models/item.dart';
 import '../controllers/db_controller.dart';
 import '../widgets/new_item.dart';
@@ -39,10 +40,10 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final routeArgs =
-        ModalRoute.of(context)?.settings.arguments as Map<String, String?>;
-    listId = routeArgs['itemListId'] as String;
-    final listTitle = routeArgs['title'] as String;
+    final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    listId = args.listId!;
+    final listTitle = args.title!;
+    final color = args.color!;
 
     return StreamBuilder<List<Item>>(
         stream: DBController.getDB()!.itemDao.getItemListByItemListId(listId),
@@ -53,6 +54,7 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
             var itemList = snapshot.data as List<Item>;
             return Scaffold(
               appBar: AppBar(
+                backgroundColor: color,
                 title: Text(listTitle),
               ),
               body: ListView.builder(

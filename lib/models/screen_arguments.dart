@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ScreenArguments {
-  final String? id;
-  final Color? color;
-  final String? title;
-  final String? fromId;
+  String? listCategoryId;
+  Color? color;
+  String? title;
+  String? listId;
 
-  ScreenArguments({this.id, this.color, this.title, this.fromId});
+  ScreenArguments({this.listCategoryId, this.color, this.title, this.listId});
 }

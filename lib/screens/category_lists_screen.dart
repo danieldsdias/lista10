@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
-import 'package:lista10/models/list_category.dart';
 
 import '../infra/fake_data.dart';
 import 'list_details_screen.dart';
@@ -47,7 +46,7 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
-    listCategoryId = args.id!;
+    listCategoryId = args.listCategoryId!;
     final String categoryTitle = args.title!;
     final color = args.color;
 
@@ -68,11 +67,14 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
               body: ListView.builder(
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: () => Navigator.of(context)
-                        .pushNamed(ListDetailsScreen.routeName, arguments: {
-                      'itemListId': categoryLists[index].id.toString(),
-                      'title': categoryLists[index].title,
-                    }),
+                    onTap: () {
+                      args.listId = categoryLists[index].id.toString();
+                      args.title = categoryLists[index].title;
+
+                      Navigator.of(context).pushNamed(
+                          ListDetailsScreen.routeName,
+                          arguments: args);
+                    },
                     splashColor: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(_borderRadius),
                     child: Card(
