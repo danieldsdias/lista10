@@ -9,7 +9,7 @@ import '../controllers/db_controller.dart';
 import '../widgets/new_item.dart';
 
 class CategoryListsScreen extends StatefulWidget {
-  CategoryListsScreen({Key? key}) : super(key: key);
+  const CategoryListsScreen({Key? key}) : super(key: key);
 
   static const routeName = '/category-lists';
 
@@ -78,7 +78,7 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
                     splashColor: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(_borderRadius),
                     child: Card(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                           vertical: 8,
                           horizontal: 5,
                         ),
@@ -95,7 +95,7 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
                           ),
                           title: Text(categoryLists[index].title!),
                           trailing: IconButton(
-                              icon: Icon(Icons.delete),
+                              icon: const Icon(Icons.delete),
                               color: Theme.of(context).errorColor,
                               onPressed: () async {
                                 if (await confirm(
@@ -123,7 +123,7 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerFloat,
               floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
                 onPressed: () => _startAddNewItem(context),
               ),
             );

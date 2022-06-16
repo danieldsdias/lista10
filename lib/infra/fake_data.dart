@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 import '../models/item.dart';
@@ -31,7 +33,7 @@ final DUMMY_CATEGORIES = [
   ),
 ];
 
-const DUMMY_LISTS = const [
+const DUMMY_LISTS = [
   ItemList(
     id: 1,
     title: 'Compra do mês',
@@ -54,7 +56,7 @@ const DUMMY_LISTS = const [
   ),
 ];
 
-const DUMMY_ITEMS = const [
+const DUMMY_ITEMS = [
   Item(
     id: 1,
     title: 'Carne',

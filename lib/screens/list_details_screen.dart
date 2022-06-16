@@ -6,7 +6,7 @@ import '../controllers/db_controller.dart';
 import '../widgets/new_item.dart';
 
 class ListDetailsScreen extends StatefulWidget {
-  ListDetailsScreen({Key? key}) : super(key: key);
+  const ListDetailsScreen({Key? key}) : super(key: key);
 
   static const routeName = '/list-details';
 
@@ -60,7 +60,7 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
               body: ListView.builder(
                 itemBuilder: (context, index) {
                   return Card(
-                      margin: EdgeInsets.symmetric(
+                      margin: const EdgeInsets.symmetric(
                         vertical: 8,
                         horizontal: 5,
                       ),
@@ -77,7 +77,7 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
                         ),
                         title: Text(itemList[index].title as String),
                         trailing: IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           color: Theme.of(context).errorColor,
                           onPressed: () async {
                             await DBController.getDB()!
@@ -95,7 +95,7 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerFloat,
               floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
                 onPressed: () => _startAddNewItem(context),
               ),
             );

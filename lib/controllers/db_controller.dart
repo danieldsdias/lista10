@@ -4,17 +4,14 @@ import '../infra/fake_data.dart';
 
 class DBController {
   static bool needInit = false;
-  static AppDatabase? mainBase = null;
+  static AppDatabase? mainBase;
 
   static Future<AppDatabase?> openDatabase() async {
     if (mainBase != null) {
       return mainBase;
     } else {
       final callback = Callback(onCreate: (database, version) {
-        print("CreateDataBase callback called");
         needInit = true;
-      }, onOpen: (database) {
-        print("OpenDatabase callback called");
       });
 
       mainBase = await $FloorAppDatabase

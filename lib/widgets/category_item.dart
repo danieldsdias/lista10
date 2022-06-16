@@ -8,7 +8,8 @@ class CategoryItem extends StatelessWidget {
   final Color color;
   final double _borderRadius = 15;
 
-  CategoryItem(this.id, this.title, this.color);
+  const CategoryItem(this.id, this.title, this.color, {Key? key})
+      : super(key: key);
 
   void selectCategory(BuildContext ctx) {
     Navigator.of(ctx).pushNamed(CategoryListsScreen.routeName,
@@ -27,7 +28,6 @@ class CategoryItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(_borderRadius),
       child: Container(
         padding: EdgeInsets.all(_borderRadius),
-        child: Text(title),
         decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [color.withOpacity(0.7), color],
@@ -35,6 +35,7 @@ class CategoryItem extends StatelessWidget {
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(_borderRadius)),
+        child: Text(title),
       ),
     );
   }

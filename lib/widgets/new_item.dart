@@ -1,11 +1,13 @@
+// ignore_for_file: use_key_in_widget_constructors, no_logic_in_create_state
+
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:flutter/material.dart';
 
 class NewItem extends StatefulWidget {
   final Function addTx;
-  Color? color;
+  final Color? color;
 
-  NewItem(this.addTx, [this.color]);
+  const NewItem(this.addTx, [this.color]);
 
   @override
   State<NewItem> createState() => _NewItemState(color);
@@ -37,8 +39,8 @@ class _NewItemState extends State<NewItem> {
           content: content,
           actions: [
             TextButton(
-              child: const Text('CANCELAR'),
               onPressed: Navigator.of(context).pop,
+              child: const Text('CANCELAR'),
             ),
             TextButton(
               child: const Text('ESCOLHER'),
@@ -58,12 +60,10 @@ class _NewItemState extends State<NewItem> {
     _openDialog(
       "Color picker",
       MaterialColorPicker(
-        allowShades: false,
-        selectedColor: _shadeColor,
-        onColorChange: (color) => setState(() => _tempShadeColor = color),
-        onMainColorChange: (color) => setState(() => _tempMainColor = color),
-        onBack: () => print("Back button pressed"),
-      ),
+          allowShades: false,
+          selectedColor: _shadeColor,
+          onColorChange: (color) => setState(() => _tempShadeColor = color),
+          onMainColorChange: (color) => setState(() => _tempMainColor = color)),
     );
   }
 
@@ -74,26 +74,13 @@ class _NewItemState extends State<NewItem> {
       return;
     }
 
-    if (useColor)
+    if (useColor) {
       widget.addTx(enteredTitle, _mainColor);
-    else
+    } else {
       widget.addTx(enteredTitle);
+    }
 
     Navigator.of(context).pop();
-  }
-
-  void _presentDatePicker() {
-    showDatePicker(
-            context: context,
-            initialDate: DateTime.now(),
-            firstDate: DateTime(2022),
-            lastDate: DateTime(2024))
-        .then((pickedDate) {
-      if (pickedDate == null) {
-        return;
-      }
-    });
-    print('...');
   }
 
   @override
@@ -121,12 +108,12 @@ class _NewItemState extends State<NewItem> {
               ),
               const SizedBox(height: 16.0),
               useColor
-                  ? Container(
+                  ? SizedBox(
                       height: 60,
                       child: Row(
                         children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.only(left: 10, right: 20),
+                            padding: const EdgeInsets.only(left: 10, right: 20),
                             child: CircleAvatar(
                                 backgroundColor: _mainColor, radius: 20),
                           ),

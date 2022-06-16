@@ -8,6 +8,8 @@ import '../controllers/db_controller.dart';
 class CategoriesScreen extends StatefulWidget {
   static const routeName = '/';
 
+  const CategoriesScreen({Key? key}) : super(key: key);
+
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
@@ -44,7 +46,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Categorias de listas'),
+        title: const Text('Categorias de listas'),
       ),
       body: StreamBuilder<Object>(
           stream: DBController.getDB()!.listCategoryDao.getAllCategories(),
@@ -54,17 +56,17 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             } else if (snapshot.hasData) {
               var listCategoryList = snapshot.data as List<ListCategory>;
               return GridView(
-                padding: EdgeInsets.all(10),
-                children: listCategoryList
-                    .map((catData) => CategoryItem(catData.id.toString(),
-                        catData.title!, Color(catData.color!)))
-                    .toList(),
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                padding: const EdgeInsets.all(10),
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 200,
                   childAspectRatio: 3 / 2,
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                 ),
+                children: listCategoryList
+                    .map((catData) => CategoryItem(catData.id.toString(),
+                        catData.title!, Color(catData.color!)))
+                    .toList(),
               );
             } else {
               return const Center(
@@ -74,7 +76,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () => _startAddNewItem(context),
       ),
     );
