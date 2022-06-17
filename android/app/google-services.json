@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1003811883410",
+    "project_id": "pos-infnet-a7b3b",
+    "storage_bucket": "pos-infnet-a7b3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003811883410:android:d1c56ecc4dffdb6b11d94b",
+        "android_client_info": {
+          "package_name": "br.edu.infnet.al.lista10"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1003811883410-m81of38aotu2t8kca4jchlokkqaomqsg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9J8uKlWr88ZvLndyRF8-f7GHwNIONALs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1003811883410-m81of38aotu2t8kca4jchlokkqaomqsg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1003811883410-i1sn71s5e3j25bkhkflshglpaqif7l8t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lista10"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
