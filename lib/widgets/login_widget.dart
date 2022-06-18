@@ -15,8 +15,6 @@ class LoginWidget extends StatefulWidget {
     required this.onClickedSignUp,
   }) : super(key: key);
 
-  static const routeName = '/login';
-
   @override
   State<LoginWidget> createState() => _LoginWidgetState();
 }

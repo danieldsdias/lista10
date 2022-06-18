@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lista10/helpers/helpers_auth.dart';
-import 'package:lista10/screens/home_screen.dart';
+import 'package:lista10/screens/user_screen.dart';
+
+import 'categories_screen.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
   VerifyEmailScreen({Key? key}) : super(key: key);
@@ -65,7 +67,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
   @override
   Widget build(BuildContext context) => _isEmailVerified
-      ? const HomeScreen()
+      ? const CategoriesScreen()
       : Scaffold(
           appBar: AppBar(
             title: const Text('Verificar E-Mail'),

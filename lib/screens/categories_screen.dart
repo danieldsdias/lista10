@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lista10/models/list_category.dart';
+import 'package:lista10/screens/user_screen.dart';
 
 import '../widgets/category_item.dart';
 import '../widgets/new_item.dart';
 import '../controllers/db_controller.dart';
 
 class CategoriesScreen extends StatefulWidget {
-  static const routeName = '/';
+  static const routeName = '/categories';
 
   const CategoriesScreen({Key? key}) : super(key: key);
 
@@ -47,6 +48,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Categorias de listas'),
+        actions: <Widget>[
+          IconButton(
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(UserScreen.routeName),
+              icon: const Icon(Icons.person))
+        ],
       ),
       body: StreamBuilder<Object>(
           stream: DBController.getDB()!.listCategoryDao.getAllCategories(),

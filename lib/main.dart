@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:lista10/firebase_options.dart';
 import 'package:lista10/helpers/helpers_auth.dart';
 import 'package:lista10/screens/auth_screen.dart';
-import 'package:lista10/screens/home_screen.dart';
+import 'package:lista10/screens/user_screen.dart';
 import 'package:lista10/screens/verify_email_screen.dart';
 
 import 'infra/lista10_database.dart';
@@ -42,29 +42,30 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal)
             .copyWith(secondary: Colors.tealAccent),
       ),
-      home: const MainPage(),
-
+      initialRoute: MainPage.routeName,
       //theme: ThemeData(
       //  canvasColor: const Color.fromRGBO(255, 254, 229, 1),
       //  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
       //      .copyWith(secondary: Colors.amber),
       //),
-      //initialRoute: LoginScreen.routeName,
-      //routes: {
-      //  LoginScreen.routeName: ((ctx) => const LoginScreen()),
-      //  CategoriesScreen.routeName: (ctx) => const CategoriesScreen(),
-      //  CategoryListsScreen.routeName: (ctx) => const CategoryListsScreen(),
-      //  ListDetailsScreen.routeName: (ctx) => const ListDetailsScreen(),
-      //},
-      //onUnknownRoute: (settings) {
-      //  return MaterialPageRoute(builder: (ctx) => const CategoriesScreen());
-      //},
+      routes: {
+        MainPage.routeName: ((context) => const MainPage()),
+        CategoriesScreen.routeName: (ctx) => const CategoriesScreen(),
+        CategoryListsScreen.routeName: (ctx) => const CategoryListsScreen(),
+        ListDetailsScreen.routeName: (ctx) => const ListDetailsScreen(),
+        UserScreen.routeName: ((context) => const UserScreen())
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (ctx) => const MainPage());
+      },
     );
   }
 }
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
+
+  static const routeName = '/';
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -78,7 +79,7 @@ class MainPage extends StatelessWidget {
             } else if (snapshot.hasData) {
               return VerifyEmailScreen();
             } else {
-              return AuthScreen();
+              return const AuthScreen();
             }
           },
         ),

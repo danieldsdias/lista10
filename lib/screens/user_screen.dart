@@ -1,15 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class UserScreen extends StatelessWidget {
+  const UserScreen({Key? key}) : super(key: key);
+
+  static const routeName = '/user';
+
+  void _signOut(BuildContext context) {
+    FirebaseAuth.instance.signOut();
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      appBar: AppBar(title: const Text('Usuário')),
       body: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
@@ -34,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                 size: 32,
               ),
               label: const Text('Sair'),
-              onPressed: () => FirebaseAuth.instance.signOut(),
+              onPressed: () => _signOut(context),
             )
           ],
         ),

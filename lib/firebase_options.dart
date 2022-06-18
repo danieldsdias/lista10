@@ -25,7 +25,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -67,19 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1003811883410',
     projectId: 'pos-infnet-a7b3b',
     storageBucket: 'pos-infnet-a7b3b.appspot.com',
-    iosClientId:
-        '1003811883410-3bfjeflpf7bfs1ovdokksc9aam7v67k2.apps.googleusercontent.com',
-    iosBundleId: 'br.edu.infnet.al.lista10',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAA-QBQc1uCukGVY9WK6Mx_Xpos3CVLG5I',
-    appId: '1:1003811883410:ios:17e5169e0f89719e11d94b',
-    messagingSenderId: '1003811883410',
-    projectId: 'pos-infnet-a7b3b',
-    storageBucket: 'pos-infnet-a7b3b.appspot.com',
-    iosClientId:
-        '1003811883410-3bfjeflpf7bfs1ovdokksc9aam7v67k2.apps.googleusercontent.com',
+    androidClientId: '1003811883410-603hpig5fbcljguh8bfddi5uia6mu8c5.apps.googleusercontent.com',
+    iosClientId: '1003811883410-3bfjeflpf7bfs1ovdokksc9aam7v67k2.apps.googleusercontent.com',
     iosBundleId: 'br.edu.infnet.al.lista10',
   );
 }
