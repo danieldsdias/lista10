@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lista10/main.dart';
+import 'package:lista10/screens/forgot_password_screen.dart';
 
 class LoginWidget extends StatefulWidget {
   final Function() onClickedSignUp;
@@ -102,6 +103,20 @@ class _LoginWidgetState extends State<LoginWidget> {
                   style: TextStyle(fontSize: 24),
                 ),
                 onPressed: _signIn,
+              ),
+              const SizedBox(height: 24),
+              GestureDetector(
+                child: Text(
+                  'Esqueceu a senha?',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    color: Theme.of(context).colorScheme.secondary,
+                    fontSize: 20,
+                  ),
+                ),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ForgotPasswordScreen(),
+                )),
               ),
               const SizedBox(height: 16),
               RichText(
