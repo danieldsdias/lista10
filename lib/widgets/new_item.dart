@@ -84,6 +84,12 @@ class _NewItemState extends State<NewItem> {
   }
 
   @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Card(
