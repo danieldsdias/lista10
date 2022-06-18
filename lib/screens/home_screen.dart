@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Logado como',
+              'Conectado como',
               style: TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 8),

@@ -5,6 +5,7 @@ import 'package:lista10/firebase_options.dart';
 import 'package:lista10/helpers/helpers_auth.dart';
 import 'package:lista10/screens/auth_screen.dart';
 import 'package:lista10/screens/home_screen.dart';
+import 'package:lista10/screens/verify_email_screen.dart';
 
 import 'infra/lista10_database.dart';
 import 'controllers/db_controller.dart';
@@ -75,7 +76,7 @@ class MainPage extends StatelessWidget {
             } else if (snapshot.hasError) {
               return const Center(child: Text('Ops! Deu algum problema!'));
             } else if (snapshot.hasData) {
-              return const HomeScreen();
+              return VerifyEmailScreen();
             } else {
               return AuthScreen();
             }
