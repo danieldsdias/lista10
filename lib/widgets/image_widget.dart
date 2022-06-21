@@ -56,7 +56,7 @@ class ImageWidget extends StatelessWidget {
   }
 
   Widget buildImage(BuildContext context) {
-    final imagePath = this.image!.path;
+    final imagePath = this.image.path;
     final image = imagePath.contains('https://')
         ? NetworkImage(imagePath)
         : FileImage(File(imagePath));
