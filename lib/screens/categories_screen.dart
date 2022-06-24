@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lista10/models/list_category.dart';
-import 'package:lista10/screens/user_screen.dart';
+import 'package:lista10_package/lista10_package.dart';
 
-import '../widgets/category_item.dart';
-import '../widgets/new_item.dart';
+import '../models/list_category.dart';
+import '../screens/user_screen.dart';
+import '../widgets/category_item_widget.dart';
 import '../controllers/db_controller.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -28,19 +28,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     setState(() {
       DBController.getDB()!.listCategoryDao.insertData(newCategory);
     });
-  }
-
-  void _startAddNewItem(BuildContext ctx) {
-    showModalBottomSheet(
-      context: ctx,
-      builder: (_) {
-        return GestureDetector(
-          onTap: () => {},
-          behavior: HitTestBehavior.opaque,
-          child: NewItem(_addNewCategory, color),
-        );
-      },
-    );
   }
 
   @override
@@ -71,7 +58,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   mainAxisSpacing: 20,
                 ),
                 children: listCategoryList
-                    .map((catData) => CategoryItem(catData.id.toString(),
+                    .map((catData) => CategoryItemWidget(catData.id.toString(),
                         catData.title!, Color(catData.color!)))
                     .toList(),
               );
@@ -83,8 +70,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
+        key: Key('AddCategoriesButton'),
         child: const Icon(Icons.add),
-        onPressed: () => _startAddNewItem(context),
+        onPressed: () =>
+            NewItemWidget.startAddNewItem(context, _addNewCategory, color),
       ),
     );
   }

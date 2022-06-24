@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lista10_package/lista10_package.dart';
 
 import '../models/screen_arguments.dart';
 import '../models/item.dart';
 import '../controllers/db_controller.dart';
-import '../widgets/new_item.dart';
 
 class ListDetailsScreen extends StatefulWidget {
   const ListDetailsScreen({Key? key}) : super(key: key);
@@ -23,19 +23,6 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
     setState(() {
       DBController.getDB()!.itemDao.insertItem(newItem);
     });
-  }
-
-  void _startAddNewItem(BuildContext ctx) {
-    showModalBottomSheet(
-      context: ctx,
-      builder: (_) {
-        return GestureDetector(
-          onTap: () => {},
-          behavior: HitTestBehavior.opaque,
-          child: NewItem(_addNewItem),
-        );
-      },
-    );
   }
 
   @override
@@ -96,7 +83,8 @@ class _ListDetailsScreenState extends State<ListDetailsScreen> {
                   FloatingActionButtonLocation.centerFloat,
               floatingActionButton: FloatingActionButton(
                 child: const Icon(Icons.add),
-                onPressed: () => _startAddNewItem(context),
+                onPressed: () =>
+                    NewItemWidget.startAddNewItem(context, _addNewItem),
               ),
             );
           } else {

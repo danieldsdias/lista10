@@ -1,14 +1,7 @@
-import 'package:test/test.dart';
+// ignore_for_file: avoid_relative_lib_imports
 
-import '../lib/controllers/db_controller.dart';
-import '../lib/models/list_category.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('Tests', () {
-    test('create database', () async {
-      final Stream<List<ListCategory>> categories =
-          await DBController.getDB()!.listCategoryDao.getAllCategories();
-      print('test');
-    });
-  });
+  group('Tests', () {});
 }

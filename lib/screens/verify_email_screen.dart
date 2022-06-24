@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lista10/helpers/helpers_auth.dart';
-import 'package:lista10/screens/user_screen.dart';
 
 import 'categories_screen.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
-  VerifyEmailScreen({Key? key}) : super(key: key);
+  const VerifyEmailScreen({Key? key}) : super(key: key);
 
   @override
   State<VerifyEmailScreen> createState() => _VerifyEmailScreenState();

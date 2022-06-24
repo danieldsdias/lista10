@@ -104,11 +104,10 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
               const SizedBox(height: 24),
               GestureDetector(
-                child: Text(
+                child: const Text(
                   'Esqueceu a senha?',
                   style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Colors.black54,
                     fontSize: 20,
                   ),
                 ),
@@ -119,19 +118,14 @@ class _LoginWidgetState extends State<LoginWidget> {
               const SizedBox(height: 16),
               RichText(
                 text: TextSpan(
-                    style: const TextStyle(color: Colors.white, fontSize: 20),
-                    text: 'Não tem uma conta?   ',
-                    children: [
-                      TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = widget.onClickedSignUp,
-                        text: 'Criar',
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
-                      )
-                    ]),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = widget.onClickedSignUp,
+                  text: 'Criar conta',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.black54,
+                  ),
+                ),
               ),
             ],
           ),

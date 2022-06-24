@@ -1,21 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 import 'firebase_options.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:lista10/firebase_options.dart';
-import 'package:lista10/helpers/helpers_auth.dart';
-import 'package:lista10/screens/auth_screen.dart';
-import 'package:lista10/screens/user_screen.dart';
-import 'package:lista10/screens/verify_email_screen.dart';
 
-import 'infra/lista10_database.dart';
-import 'controllers/db_controller.dart';
-
+import 'helpers/helpers_auth.dart';
+import 'screens/auth_screen.dart';
+import 'screens/user_screen.dart';
+import 'screens/verify_email_screen.dart';
 import 'screens/category_lists_screen.dart';
 import 'screens/categories_screen.dart';
 import 'screens/list_details_screen.dart';
-import 'widgets/login_widget.dart';
+import 'infra/lista10_database.dart';
+import 'controllers/db_controller.dart';
 
 AppDatabase? database;
 
@@ -40,16 +37,12 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       title: 'Lista 10',
-      theme: ThemeData.dark().copyWith(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.teal)
-            .copyWith(secondary: Colors.tealAccent),
-      ),
       initialRoute: MainPage.routeName,
-      //theme: ThemeData(
-      //  canvasColor: const Color.fromRGBO(255, 254, 229, 1),
-      //  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
-      //      .copyWith(secondary: Colors.amber),
-      //),
+      theme: ThemeData(
+        canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
+            .copyWith(secondary: Colors.amber),
+      ),
       routes: {
         MainPage.routeName: ((context) => const MainPage()),
         CategoriesScreen.routeName: (ctx) => const CategoriesScreen(),
@@ -79,7 +72,7 @@ class MainPage extends StatelessWidget {
             } else if (snapshot.hasError) {
               return const Center(child: Text('Ops! Deu algum problema!'));
             } else if (snapshot.hasData) {
-              return VerifyEmailScreen();
+              return const VerifyEmailScreen();
             } else {
               return const AuthScreen();
             }

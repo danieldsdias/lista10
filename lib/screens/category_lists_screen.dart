@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
+import 'package:lista10_package/lista10_package.dart';
 
 import '../infra/fake_data.dart';
 import 'list_details_screen.dart';
 import '../models/item_list.dart';
 import '../models/screen_arguments.dart';
 import '../controllers/db_controller.dart';
-import '../widgets/new_item.dart';
 
 class CategoryListsScreen extends StatefulWidget {
   const CategoryListsScreen({Key? key}) : super(key: key);
@@ -28,19 +28,6 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
     setState(() {
       DBController.getDB()!.itemListDao.insertData(newItem);
     });
-  }
-
-  void _startAddNewItem(BuildContext ctx) {
-    showModalBottomSheet(
-      context: ctx,
-      builder: (_) {
-        return GestureDetector(
-          onTap: () => {},
-          behavior: HitTestBehavior.opaque,
-          child: NewItem(_addNewItem),
-        );
-      },
-    );
   }
 
   @override
@@ -124,7 +111,8 @@ class _CategoryListsScreenState extends State<CategoryListsScreen> {
                   FloatingActionButtonLocation.centerFloat,
               floatingActionButton: FloatingActionButton(
                 child: const Icon(Icons.add),
-                onPressed: () => _startAddNewItem(context),
+                onPressed: () =>
+                    NewItemWidget.startAddNewItem(context, _addNewItem),
               ),
             );
           } else {

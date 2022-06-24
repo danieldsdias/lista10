@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:lista10/models/screen_arguments.dart';
 import 'package:lista10/screens/category_lists_screen.dart';
 
-class CategoryItem extends StatelessWidget {
+class CategoryItemWidget extends StatelessWidget {
   final String id;
   final String title;
   final Color color;
   final double _borderRadius = 15;
 
-  const CategoryItem(this.id, this.title, this.color, {Key? key})
+  const CategoryItemWidget(this.id, this.title, this.color, {Key? key})
       : super(key: key);
 
   void selectCategory(BuildContext ctx) {

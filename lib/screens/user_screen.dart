@@ -1,10 +1,12 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
+import 'package:lista10_package/lista10_package.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lista10/widgets/image_widget.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({Key? key}) : super(key: key);
@@ -36,21 +38,6 @@ class _UserScreenState extends State<UserScreen> {
     }
   }
 
-  Widget buildButton({
-    required String title,
-    required IconData icon,
-    required VoidCallback onClicked,
-  }) =>
-      ElevatedButton(
-          onPressed: onClicked,
-          child: Row(
-            children: [
-              Icon(icon, size: 28),
-              const SizedBox(width: 16),
-              Text(title),
-            ],
-          ));
-
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
@@ -76,13 +63,13 @@ class _UserScreenState extends State<UserScreen> {
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      buildButton(
+                      ImageWidget.buildButton(
                           title: 'Galeria',
                           icon: Icons.image_outlined,
                           onClicked: () => pickImage(ImageSource.gallery)),
                       const Padding(
                           padding: EdgeInsets.only(left: 20, right: 20)),
-                      buildButton(
+                      ImageWidget.buildButton(
                           title: 'Camera',
                           icon: Icons.camera_alt_outlined,
                           onClicked: () => pickImage(ImageSource.camera)),
