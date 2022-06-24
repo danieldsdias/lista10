@@ -23,7 +23,8 @@ Um app para gerenciamento de listas.
 
 ## Exemplos
 
-![JQjpjG_ae011db3aa87b90b5bab402187df1cd2_00-00-00_00-02-51_2](https://user-images.githubusercontent.com/14143276/175459885-1aae350b-fb62-4cc3-b8ab-fdc2720a11b1.gif)
+![JQjpjG_ae011db3aa87b90b5bab402187df1cd2_00-00-00_00-02-51_2](https://user-images.githubusercontent.com/14143276/175459885-1aae350b-fb62-4cc3-b8ab-fdc2720a11b1.gif)            ![nYzzl7_78996f52d98a162f08bcf5dd852df2eb_00-00-00_00-01-53_2](https://user-images.githubusercontent.com/14143276/175462614-cfb5a32e-8b06-4550-bd89-3190dac3a60f.gif)
+
 
 
 ## TODO List
