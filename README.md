@@ -21,6 +21,11 @@ Um app para gerenciamento de listas.
 * Inicie um emulador ou conecte o seu dispositivo
 * use o comando no terminal: `flutter run`
 
+## Exemplos
+
+![JQjpjG_ae011db3aa87b90b5bab402187df1cd2_00-00-00_00-02-51_2](https://user-images.githubusercontent.com/14143276/175459885-1aae350b-fb62-4cc3-b8ab-fdc2720a11b1.gif)
+
+
 ## TODO List
 
 * Salvar imagem do usuário localmente
